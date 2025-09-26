@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QRCode generation </title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>🔗 Change url to QRCode</h1>
+    <input type="text" id="urlInput" placeholder="أدخل الرابط هنا...">
+    <button onclick="generateQR()">generate QR</button>
+    <div id="qrcode"></div>
+  </div>
+
+  <!-- مكتبة qrcode -->
+  <script src="https://cdn.jsdelivr.net/npm/qrcodejs/qrcode.min.js"></script>
+  <script>
+    function generateQR() {
+      const qrContainer = document.getElementById("qrcode");
+      qrContainer.innerHTML = "";
+      const url = document.getElementById("urlInput").value.trim();
+      if (url) {
+        new QRCode(qrContainer, {
+          text: url,
+          width: 200,
+          height: 200,
+        });
+      } else {
+        alert("من فضلك أدخل رابط أولاً!");
+      }
+    }
+  </script>
+</body>
+</html>
